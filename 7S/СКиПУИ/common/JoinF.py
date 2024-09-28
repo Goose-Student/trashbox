@@ -1,5 +1,4 @@
 from pathlib import Path
-from base64 import b64decode
 from json import load
 
 # Запрос имени каталога у пользователя
@@ -33,9 +32,8 @@ while True:
 		break # Если файл не существует, прерываем цикл
 
 	with open(part_filepath, 'rb') as part_file:
-		encoded_content = part_file.read()
-		decoded_content = b64decode(encoded_content)
-		output_file.write(decoded_content)
+		content = part_file.read()
+		output_file.write(content)
 
 	print(f'Added: {part_filepath}') # Информация о добавлении части
 	counter += 1
