@@ -1,7 +1,6 @@
 from pathlib import Path
 from os import mkdir
 from shutil import rmtree
-from base64 import b64encode
 from json import dump
 
 # Запрос имени файла у пользователя
@@ -42,13 +41,10 @@ while True:
 	if not content:
 		break # Если конец файла, выходим из цикла
 
-	# Кодирование блока в Base64
-	encoded_content = b64encode(content)
-
 	# Запись закодированного блока в новый файл
 	part_filepath = catalog / f'part_{counter}.b64'
 	with open(part_filepath, 'wb') as part_file:
-		part_file.write(encoded_content)
+		part_file.write(content)
 
 	print(f'Created: {part_filepath}') # Информация о созданном файле
 	counter += 1
